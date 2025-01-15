@@ -244,7 +244,7 @@ class GAN:
                     self.optimizerG.step()
                     self.G_losses.append(loss_G.item())
 
-
+#These two training methods can be more cleanly consolidated into one
     def ProGAN_train(self):
         assert self.type == 'ProGAN'
         for round in range(5):
