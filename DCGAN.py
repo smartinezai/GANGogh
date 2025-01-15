@@ -199,7 +199,8 @@ class GAN:
                 #Add to average batch loss
                 self.G_losses.append(errG.item())
                 self.D_losses.append(errD.item())
-
+            
+    
     def WGAN_train(self,_num_epochs=num_epochs):
         assert self.type == 'WGAN' or self.type == 'ProWGAN'
         # Setup Adam optimizers for both G and D (Improved gradient descent algorithm)
@@ -244,7 +245,7 @@ class GAN:
                     self.optimizerG.step()
                     self.G_losses.append(loss_G.item())
 
-#These two training methods can be more cleanly consolidated into one
+#These two training methods can be more cleanly consolidated into one. Ideally a main train method that according to the GAN type calls the correspondent train method
     def ProGAN_train(self):
         assert self.type == 'ProGAN'
         for round in range(5):
