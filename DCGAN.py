@@ -109,7 +109,7 @@ class GAN:
 
     #On an IDE (like pycharm) it is important to set "Emulate terminal in output console"
     #that the nested progress bar can work correctly
-    def train(self,_num_epochs=num_epochs):
+    def train(self,_num_epochs=num_epochs): #base train method from pytorch expanded according to project needs
         # Setup Adam optimizers for both G and D (Improved gradient descent algorithm)
         self.optimizerD = optim.Adam(self.discriminator.parameters(), lr=lr, betas=(beta1, beta2))
         self.optimizerG = optim.Adam(self.generator.parameters(), lr=lr, betas=(beta1, beta2))
