@@ -89,7 +89,7 @@ class PixelNorm(nn.Module):
         return input / torch.sqrt((torch.mean(input ** 2, dim=1, keepdim=True) + self.epsilon))
 
 
-class Equalized_ConvTranspose2d(nn.Module):
+class Equalized_ConvTranspose2d(nn.Module): #based on the pytorch ConvTranspose2d class, adding equalisation to ensure weights of the layer are in range [0,1]
     def __init__(self,in_channels,out_channels,kernel_size,stride,padding,bias):
         super(Equalized_ConvTranspose2d, self).__init__()
         self.in_channels = in_channels
@@ -108,7 +108,7 @@ class Equalized_ConvTranspose2d(nn.Module):
     def forward(self, input):
         return F.conv_transpose2d(input, self.weight * self.scale, self.bias, self.stride, self.padding)
 
-class Equalized_Conv2d(nn.Module):
+class Equalized_Conv2d(nn.Module): #based on pytorch's conv2d, adding equalisatoin to ensure layer weights are in range [0,1]
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding, bias):
         super(Equalized_Conv2d, self).__init__()
         self.in_channels = in_channels
